@@ -1,35 +1,20 @@
-package com.teste.demo.entity;
+package com.teste.demo.dro;
 
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Entity
-@Table(name = "post" , schema = "public")
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class PostDto {
 
-public class PostEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name="id_user")
     private Long id_user;
-
-    @Column(name="post")
     private String post;
 
 
-    public PostEntity(){
-
-    }
-
-    public PostEntity(Long id_user, String post) {
+    public PostDto(Long id, Long id_user, String post) {
+        this.id = id;
         this.id_user = id_user;
         this.post = post;
     }
-
-
 
     public Long getId() {
         return id;
@@ -55,5 +40,3 @@ public class PostEntity {
         this.post = post;
     }
 }
-
-

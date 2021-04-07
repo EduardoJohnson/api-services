@@ -1,5 +1,7 @@
 package com.teste.demo.controller;
 
+import com.teste.demo.dro.PostDto;
+import com.teste.demo.dto.request.CreatePostDto;
 import com.teste.demo.entity.PostEntity;
 
 import com.teste.demo.service.PostService;
@@ -11,7 +13,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping(value = "/api")
+@RequestMapping("/get")
 public class PostController {
 
 
@@ -19,14 +21,13 @@ public class PostController {
     private PostService postService;
 
     @PostMapping("/create")
-    public String create(@RequestBody PostEntity postEntity){
-        return "Usuario cadastrado" + postService.save(postEntity);
+    public String create(@RequestBody CreatePostDto createPostDto){
+        return "Usuario cadastrado" + postService.save(createPostDto);
     }
 
     @GetMapping("/all")
-    public List<PostEntity> getAll() {
-
-        return postService.getPost();
+    public List<PostDto> findAll() {
+        return postService.listPost();
 
 
     }
