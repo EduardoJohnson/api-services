@@ -9,7 +9,6 @@ import com.teste.demo.mapper.UserMapper;
 import com.teste.demo.repository.PostRepository;
 import com.teste.demo.repository.TesteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 
@@ -23,7 +22,6 @@ public class TesteService {
 
     @Autowired
     private final TesteRepository testeRepository;
-
 
     @Autowired
     private PostRepository repo;
