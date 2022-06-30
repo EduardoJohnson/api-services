@@ -16,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/")
+@CrossOrigin(origins="http://localhost:3000")
 public class TesteController {
 
     @Autowired
@@ -27,7 +28,7 @@ public class TesteController {
         return service.save(createUserDto);
     }
 
-    @GetMapping(value = "/get")
+    @GetMapping("/get")
     public List<UserDto> list() {
         return service.list();
 
