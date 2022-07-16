@@ -2,14 +2,16 @@ package com.teste.demo.entity;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-@Table(name = "registrationuser", schema = "public")
-public class LoginEntity {
+@Table(schema = "public" ,name = "registrationuser")
+public class LoginEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     @Column(name = "username")
     private String username;
     @Column(name = "password")
@@ -20,17 +22,17 @@ public class LoginEntity {
 
     }
 
-    public LoginEntity(int id, String username, int password) {
+    public LoginEntity(Long id, String username, int password) {
         this.id = id;
         this.username = username;
         this.password = password;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
