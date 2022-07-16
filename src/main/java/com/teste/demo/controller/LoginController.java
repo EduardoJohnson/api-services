@@ -16,7 +16,7 @@ public class LoginController {
     private LoginService loginService;
 
 
-    @GetMapping("/get")
+    @GetMapping("/all")
     public List<LoginEntity> findAll() {
         return loginService.listUser();
     }
