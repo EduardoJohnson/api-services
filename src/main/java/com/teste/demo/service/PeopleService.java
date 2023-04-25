@@ -4,10 +4,10 @@ import com.teste.demo.dro.UserDto;
 import com.teste.demo.dto.request.CreateUserDto;
 import com.teste.demo.dto.response.TesteUpdateDto;
 import com.teste.demo.entity.PostEntity;
-import com.teste.demo.entity.TesteEntity;
+import com.teste.demo.entity.PersonEntity;
 import com.teste.demo.mapper.UserMapper;
 import com.teste.demo.repository.PostRepository;
-import com.teste.demo.repository.TesteRepository;
+import com.teste.demo.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +18,10 @@ import java.util.stream.Collectors;
 
 
 @Service
-public class TesteService {
+public class PersonService {
 
     @Autowired
-    private final TesteRepository testeRepository;
+    private final PersonRepository personRepository;
 
     @Autowired
     private PostRepository repo;
@@ -29,20 +29,20 @@ public class TesteService {
     @Autowired
     private UserMapper mapper;
 
-    public TesteService(TesteRepository testeRepository){
-        this.testeRepository = testeRepository;
+    public PersonService(PersonRepository personRepository)    {
+        this.personRepository = personRepository;
     }
 
     public String save(CreateUserDto createUserDto){
 
-
         Long cpf = createUserDto.getCpf();
         String name = createUserDto.getName();
         String email = createUserDto.getEmail();
+        String password = createUserDto.getPassword();
 
-        TesteEntity testeEntity = new TesteEntity(cpf,name,email);
+        PersonEntity personEntity = new PersonEntity(cpf,name,email,password);
 
-        testeRepository.save(testeEntity);
+        personRepository.save(personEntity);
 
         String toString = "Usuário " + name + " Cadastrado";
 
@@ -51,25 +51,25 @@ public class TesteService {
 
     }
 
-    public TesteEntity update(Long id, TesteUpdateDto testeUpdateDto){
+    public PersonEntity update(Long id, TesteUpdateDto testeUpdateDto){
 
         Long cpf = testeUpdateDto.getCpf();
         String name = testeUpdateDto.getName();
         String email = testeUpdateDto.getEmail();
 
-        TesteEntity att = testeRepository.findById(id).get();
+        PersonEntity att = personRepository.findById(id).get();
 
         att.setCpf(cpf);
         att.setName(name);
         att.setEmail(email);
 
 
-        return testeRepository.save(att);
+        return personRepository.save(att);
 
     }
 
-    public List<UserDto> list(){
-        List<TesteEntity> teste = testeRepository.findAll();
+    public List<UserDto>   list(){
+        List<PersonEntity> teste = personRepository.findAll();
 
         List<UserDto> listaConvertida = teste.stream().map(mapper::entityParaDto).collect(Collectors.toList());
 
@@ -77,11 +77,11 @@ public class TesteService {
 
     }
 
-    public TesteEntity filterId(Long id){
-        return testeRepository.findById(id).get();
+    public PersonEntity filterId(Long id){
+        return personRepository.findById(id).get();
     }
     public void remove(Long id){
-        testeRepository.deleteById(id);
+        personRepository.deleteById(id);
     }
 
 
