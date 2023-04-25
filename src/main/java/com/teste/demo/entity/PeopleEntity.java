@@ -1,14 +1,17 @@
 package com.teste.demo.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "user", schema = "public")
-public class TesteEntity {
+@Table(name = "people", schema = "public")
+public class PersonEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_people")
     private Long id;
 
     @Column(name = "cpf")
@@ -20,18 +23,24 @@ public class TesteEntity {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "password")
+    private String password;
+
     @OneToMany
     @JoinColumn(name = "id_user")
     private List<PostEntity> posts;
 
-    public TesteEntity(){
+    public PersonEntity(){
 
     }
 
-    public TesteEntity(Long cpf, String name, String email) {
+
+
+    public PersonEntity(Long cpf, String name, String email, String password) {
         this.cpf = cpf;
         this.name = name;
         this.email = email;
+        this.password = password;
     }
 
     public void setName(String name) {
@@ -68,6 +77,14 @@ public class TesteEntity {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setEmail(String email) {
