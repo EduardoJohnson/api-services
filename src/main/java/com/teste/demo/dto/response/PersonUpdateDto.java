@@ -10,11 +10,11 @@ public class TesteUpdateDto {
 
     @Id
     private Long id;
-    private Long cpf;
+    private String cpf;
     private String name;
     private String email;
 
-    public TesteUpdateDto(Long id, Long cpf, String name, String email) {
+    public TesteUpdateDto(Long id, String cpf, String name, String email) {
         this.id = id;
         this.cpf = cpf;
         this.name = name;
@@ -29,11 +29,11 @@ public class TesteUpdateDto {
         this.id = id;
     }
 
-    public Long getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(Long cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
